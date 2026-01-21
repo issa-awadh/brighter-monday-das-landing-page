@@ -32,9 +32,15 @@ export function SocialProofStats() {
     };
   }, []);
 
-  // Reordered stats as requested
+  // Reordered stats explicitly for the 4-over-3 Flexbox Layout
   const stats = [
-    // Traffic
+    // Top Row (4 Highest Impact Stats)
+    {
+      icon: Eye,
+      value: '1M+',
+      label: 'Banner Ad Views',
+      color: 'bg-[#FF6F00]'
+    },
     {
       icon: Users,
       value: '800K+',
@@ -42,16 +48,9 @@ export function SocialProofStats() {
       color: 'bg-[#D32F2F]'
     },
     {
-      icon: TrendingUp,
-      value: '136K+',
-      label: 'Employer visits per month',
-      color: 'bg-[#FF6F00]'
-    },
-    // Audience
-    {
-      icon: Briefcase,
-      value: '10K+',
-      label: 'Active Employers',
+      icon: Share2,
+      value: '560K+',
+      label: 'Followers on Social Media',
       color: 'bg-[#D32F2F]'
     },
     {
@@ -60,18 +59,18 @@ export function SocialProofStats() {
       label: 'Email Subscribers',
       color: 'bg-[#FF6F00]'
     },
+    // Bottom Row (3 Supporting Stats)
     {
-      icon: Share2,
-      value: '560K+',
-      label: 'Followers on Social Media',
-      color: 'bg-[#D32F2F]'
-    },
-    // Content/Ads
-    {
-      icon: Eye,
-      value: '1M+',
-      label: 'Banner Ad Views',
+      icon: TrendingUp,
+      value: '136K+',
+      label: 'Employer visits per month',
       color: 'bg-[#FF6F00]'
+    },
+    {
+      icon: Briefcase,
+      value: '10K+',
+      label: 'Active Employers',
+      color: 'bg-[#D32F2F]'
     },
     {
       icon: FileText,
@@ -150,12 +149,18 @@ export function SocialProofStats() {
             <div className="w-24 h-1.5 bg-gradient-to-r from-[#D32F2F] to-[#FF6F00] mx-auto mt-6"></div>
           </div>
 
-          {/* Stats Grid - Changed from Grid to Flex for Centering */}
+          {/* Stats Flexbox Layout - Forces 4-over-3 layout on large screens */}
           <div className="flex flex-wrap justify-center gap-6 mb-20">
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               return (
-                <div key={index} className="w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]">
+                <div
+                  key={index}
+                  // Mobile: Full width
+                  // Tablet (md): 2 items per row (calc(50% - gap))
+                  // Laptop (lg): 4 items per row (calc(25% - gap))
+                  className="w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
+                >
                   <AnimatedStatCard
                     stat={stat}
                     Icon={Icon}
